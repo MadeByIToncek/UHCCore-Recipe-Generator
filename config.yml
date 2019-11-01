@@ -1,0 +1,954 @@
+#Choose the percentage threshold of ready teams at which the game should start
+minimal-ready-teams-percentage-to-start: 60
+
+#Choose the threshold of ready teams at which the game should start (in combination with the percentage condition)
+minimal-ready-teams-to-start: 2
+
+#Choose the minimum number of players connected  to start the countdown when team are ready (in combination with the two above options)
+min-players-to-start: 0
+
+#Choose how much players can be in the same team, set it to 1 to play a game with no teams
+max-players-per-team: 2
+
+#If true every team will get a random team color (This color may be changed in the team color selector).
+use-team-colors: true
+
+# If true the display name of players will change to the color of their team (The display name shows in chat and in messages of other plugins that use display name).
+change-display-names: true
+
+#Choose if new players will be auto assigned to a not full team.
+auto-assign-new-player-team: false
+
+#If true, all players with no team when the game starts, will be assigned to a team that is not full.
+#If no team can be found, the player will remain solo
+#Be warned that it will even force two solo players to be in the same team, resulting in a game with only one team, thus ending instantly.
+#To avoid this wierd case you must set your min-players-to-start value to be higher than the max-players-per-team value
+force-assign-solo-player-to-team-when-starting: false
+
+#Set it to true to prevent players from leaving their team (may be useful with auto-assign set to true)
+prevent-player-from-leaving-team: false
+
+#Forces the teams to be always ready, thus preventing afk players from blocking the beginning of the game
+team-always-ready: false
+
+#Choose the coundown time to start the game when enough teams are ready
+#This value must be set to 6 or more. If you set a value of 5 or less, it will cause an unpredictable behavior.
+time-to-start-when-ready: 15
+
+#The time is seconds before the PVP starts
+time-before-pvp: 300
+
+# When enabled players of the same team will be able to damage each other.
+enable-friendly-fire: false
+
+# When set to true you won't be able to see enemy name-tags.
+disable-enemy-nametags: false
+
+#Set it to false to kick player when they die. (Give players the permission 'uhc-core.spectate.override' to always allow them to spectate)
+can-spectate-after-death: true
+
+#Set it to true to allow new players to join as spectators when the game is already running (it requires can-spectate-after-death to be true)
+# (Give players the permission 'uhc-core.spectate.override' to always allow them to spectate)
+can-join-as-spectator: false
+
+#Set it to false to block spectators from sending messages (Players with the permission 'uhc-core.chat.override' will still be able to talk)
+can-send-messages-after-death: false
+
+# Chat prefix, when enabled, messages starting with @ will display in team chat, when starting with ! they will be displayed in global chat.
+# This means players don't have to use /chat to toggle between team and global chat each time.
+chat-prefix:
+  enable: true
+  team-prefix: '@'
+  global-prefix: '!'
+
+# Disable motd (Set this to true to stop the plugin from changing the motd and allows you to use a third party plugin to change them.)
+disable-motd: false
+
+# Game difficulty (Choose from this list: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Difficulty.html)
+game-difficulty: HARD
+
+#Configure after how many seconds a disconnected player should be considered dead and eliminated
+kill-disconnected-players-after-delay:
+  enable: true
+  delay: 30
+
+#Timer in seconds to auto stop/restart the server when the game as ended (Set to -1 to disable)
+time-before-restart-after-end: -1
+
+#Set it to false to prevent the end of the game if there are no players left (may be useful for private servers with friends playing over several days,
+# it still requires the server to be left running while there are no players on it)
+countdown-ending-game-when-all-players-have-left: false
+
+# Enable to have a message and sound every x minutes. (This can be used for youtubers to know when to end their episodes.)
+episode-markers:
+  enable: false
+  # Duration of the episodes in seconds.
+  delay: 900
+
+#Choose the potions effects to be given to the players when the game starts
+#syntax = POTION_NAME/duration_in_ticks/amplifier
+#reference list https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html
+potion-effect-on-start:
+  - DAMAGE_RESISTANCE/900/100
+  - REGENERATION/900/10
+
+# Customize game behavior to add non-standard minecraft things
+customize-game-behavior:
+
+  # Set a list of scenarios that are active by default. Set to true when you want to use this feature.
+  enable-default-scenarios: true
+
+  # You can change these for individual game using /scenarios (permission: 'uhc-core.scenarios.edit')
+  # You can choose from these scenarios: CUTCLEAN, FIRELESS, BOWLESS, RODLESS, BLOODDIAMONDS, TIMBER, HORSELESS,
+  # TIMEBOMB, NOFALL, BESTPVE, TRIPLEORES, DOUBLEORES, TEAMINVENTORY, NOCLEAN, HASTEYBOYS, LUCKYLEAVES, BLEEDINGSWEETS,
+  # DOUBLEGOLD, GOLDLESS, SWITCHEROO, VEINMINER, DRAGONRUSH, LOVEATFIRSTSIGHT, FASTLEAVESDECAY, SKYHIGH
+  active-scenarios:
+
+  scenarios:
+    # When enabled players will be able to vote for what scenarios they want to be active.
+    voting:
+      enable: true
+      # The amount of scenarios players can vote for.
+      max-votes: 6
+      # The amount of scenarios with the most votes that will get added at the start of the game.
+      elected-scenarios: 6
+      # Black-list, scenarios under this list can not be voted for.
+      black-list: []
+
+
+  # Set it to true to allow ghast from dropping tears
+  # Setting it to false is a good way to prevent people from making regeneration potions
+  allow-ghast-tears-drops: true
+
+
+  # Enable extra experience drops when killing a player (experience quantities reference http://minecraft.gamepedia.com/Experience)
+  add-xp-drops-on-player-death:
+    enable: true
+    quantity: 500
+
+  # Enable random extra gold drops for specific mobs
+  # Entity types reference list here : https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+  add-gold-drops:
+    enable: true
+    min: 1
+    max: 3
+    drop-chance-percentage: 75
+    affected-mobs:
+      - CREEPER
+      - GHAST
+      - ZOMBIE
+      - SKELETON
+      - PIG
+      - COW
+      - CHICKEN
+      - RABBIT
+      - BLAZE
+      - DONKEY
+      - ENDERMAN
+      - HORSE
+      - HUSK
+      - STRAY
+      - LLAMA
+      - MULE
+      - PANDA
+      - PARROT
+      - BAT
+      - PHANTOM
+      - SILVERFISH
+      - SLIME
+      - SQUID
+      - TURTLE
+
+  # Enable extra max life for every player
+  add-player-extra-half-hearts:
+    enable: true
+    extra-half-hearts: 20
+
+  # Add custom crafts
+
+  # Set it to true to enable the need of a permission to use a custom craft
+  # Permissions node will be like uhc-core.craft.light-apple
+  enable-crafts-permissions: false
+
+  add-custom-crafts:
+    # Name of your craft, then 1, 2, 3 for every line in the crafting table
+    # Please respect this syntax: ITEM/quantity/damage_value
+    # To view the correct item item data you can use '/iteminfo' in game (Permission: 'uhc-core.commands.iteminfo')
+    # Set limit to -1 to allow unlimited crafts, set to to a value greater than 0 to limit crafts by player
+    # You can add enchantments in the enchants list (see the war-axe example)
+    # Allowed enchantments names : https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/enchantments/Enchantment.html
+    # Set default name to true to keep the default minecraft name. This means the custom crafted items will stack with other items created using default minecraft crafts.
+    # (NOTE: When default name is enabled you will not be able to use craft limit and craft permissions!)
+    'Light Apple':
+      '1': AIR/0 GOLD_INGOT/0 AIR/0
+      '2': GOLD_INGOT/0 APPLE/0 GOLD_INGOT/0
+      '3': AIR/0 GOLD_INGOT/0 AIR/0
+      craft: GOLDEN_APPLE/1/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Light Anvil':
+      '1': IRON_INGOT/0 IRON_INGOT/0 IRON_INGOT/0
+      '2': AIR/0 IRON_BLOCK/0 AIR/0
+      '3': IRON_INGOT/0 IRON_INGOT/0 IRON_INGOT/0
+      craft: ANVIL/1/0
+      default-name: false
+      enchants: []
+      limit: -1
+    'War Axe':
+      '1': IRON_INGOT/0 IRON_INGOT/0 AIR/0
+      '2': IRON_INGOT/0 IRON_BLOCK/0 AIR/0
+      '3': AIR/0 IRON_BLOCK/0 AIR/0
+      craft: IRON_AXE/1/0
+      default-name: false
+      enchants:
+        - DAMAGE_ALL 1
+        - FIRE_ASPECT 1
+      limit: -1
+    'Vorpal Sword':
+      '1': AIR/0 BONE/0 AIR/0
+      '2': AIR/0 IRON_SWORD/0 AIR/0
+      '3': AIR/0 ROTTEN_FLESH/0 AIR/0
+      craft: IRON_SWORD/1/0
+      default-name: false
+      enchants:
+        - DAMAGE_ARTHROPODS 2
+        - DAMAGE_UNDEAD 2
+      limit: -1
+    'Book of Sharpening':
+      '1': FLINT/0 AIR/0 AIR/0
+      '2': AIR/0 PAPER/0 PAPER/0
+      '3': AIR/0 PAPER/0 IRON_SWORD/0
+      craft: ENCHANTED_BOOK/1/0
+      default-name: false
+      enchants:
+        - DAMAGE_ALL 1
+      limit: -1
+    'Book of Power':
+      '1': FLINT/0 AIR/0 AIR/0
+      '2': AIR/0 PAPER/0 PAPER/0
+      '3': AIR/0 PAPER/0 BONE/0
+      craft: ENCHANTED_BOOK/1/0
+      default-name: false
+      enchants:
+        - ARROW_DAMAGE 1
+      limit: -1
+    'Dragon Sword':
+      '1': AIR/0 BLAZE_POWDER/0 AIR/0
+      '2': AIR/0 DIAMOND_SWORD/0 AIR/0
+      '3': OBSIDIAN/0 BLAZE_POWDER/0 OBSIDIAN/0
+      craft: DIAMOND_SWORD/1/0
+      default-name: false
+      enchants:
+        - DAMAGE_ALL 1
+      limit: -1
+    'Leather Economy':
+      '1': STICK/0 LEATHER/0 STICK/0
+      '2': STICK/0 LEATHER/0 STICK/0
+      '3': STICK/0 LEATHER/0 STICK/0
+      craft: LEATHER/9/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Book of Protection':
+      '1': AIR/0 AIR/0 AIR/0
+      '2': AIR/0 PAPER/0 PAPER/0
+      '3': AIR/0 PAPER/0 IRON_INGOT/0
+      craft: ENCHANTED_BOOK/1/0
+      default-name: true
+      enchants:
+        - PROTECTION_ENVIRONMENTAL 1
+      limit: -1
+    'Artemis Book':
+      '1': AIR/0 AIR/0 AIR/0
+      '2': AIR/0 PAPER/0 PAPER/0
+      '3': AIR/0 PAPER/0 ARROW/0
+      craft: ENCHANTED_BOOK/1/0
+      default-name: true
+      enchants:
+        - PROTECTION_PROJECTILE 1
+      limit: -1
+    'Dragon Armor':
+      '1': AIR/0 MAGMA_CREAM/0 AIR/0
+      '2': AIR/0 DIAMOND_CHESTPLATE/0 AIR/0
+      '3': OBSIDIAN/0 ANVIL/0 OBSIDIAN/0
+      craft: DIAMOND_CHESTPLATE/1/0
+      default-name: false
+      enchants:
+        - PROTECTION_ENVIRONMENTAL 4
+      limit: -1
+    'Dust of Light':
+      '1': REDSTONE/0 REDSTONE/0 REDSTONE/0
+      '2': REDSTONE/0 FLINT_AND_STEEL/0 REDSTONE/0
+      '3': REDSTONE/0 REDSTONE/0 REDSTONE/0
+      craft: GLOWSTONE_DUST/1/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Brewing Artifact':
+      '1': AIR/0 WHEAT_SEEDS/0 AIR/0
+      '2': WHEAT_SEEDS/0 FERMENTED_SPIDER_EYE/0 WHEAT_SEEDS/0
+      '3': AIR/0 WHEAT_SEEDS/0 AIR/0
+      craft: NETHER_WART/1/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Flaming Artifact':
+      '1': ORANGE_STAINED_GLASS/0 LAVA_BUCKET/0 ORANGE_STAINED_GLASS/0
+      '2': ORANGE_STAINED_GLASS/0 FIREWORK_ROCKET/0 ORANGE_STAINED_GLASS/0
+      '3': ORANGE_STAINED_GLASS/0 LAVA_BUCKET/0 ORANGE_STAINED_GLASS/0
+      craft: BLAZE_ROD/1/0
+      default-name: false
+      enchants: []
+      limit: -1
+    'Food Economy Porkchop':
+      '1': PORKCHOP/0 PORKCHOP/0 PORKCHOP/0
+      '2': PORKCHOP/0 COAL/0 PORKCHOP/0
+      '3': PORKCHOP/0 PORKCHOP/0 PORKCHOP/0
+      craft: COOKED_PORKCHOP/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Food Economy Beef':
+      '1': BEEF/0 BEEF/0 BEEF/0
+      '2': BEEF/0 COAL/0 BEEF/0
+      '3': BEEF/0 BEEF/0 BEEF/0
+      craft: COOKED_BEEF/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Food Economy Shoarma':
+      '1': MUTTON/0 MUTTON/0 MUTTON/0
+      '2': MUTTON/0 COAL/0 MUTTON/0
+      '3': MUTTON/0 MUTTON/0 MUTTON/0
+      craft: COOKED_MUTTON/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Food Economy Chicken':
+      '1': CHICKEN/0 CHICKEN/0 CHICKEN/0
+      '2': CHICKEN/0 COAL/0 CHICKEN/0
+      '3': CHICKEN/0 CHICKEN/0 CHICKEN/0
+      craft: COOKED_CHICKEN/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Food Economy Rabbit':
+      '1': RABBIT/0 RABBIT/0 RABBIT/0
+      '2': RABBIT/0 COAL/0 RABBIT/0
+      '3': RABBIT/0 RABBIT/0 RABBIT/0
+      craft: COOKED_RABBIT/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Food Economy Fish':
+      '1': COD/0 COD/0 COD/0
+      '2': COD/0 COAL/0 COD/0
+      '3': COD/0 COD/0 COD/0
+      craft: COOKED_COD/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Spiked Armor':
+      '1': AIR/0 LILY_PAD/0 AIR/0
+      '2': AIR/0 CACTUS/0 AIR/0
+      '3': AIR/0 LEATHER_CHESTPLATE/0 AIR/0
+      craft: LEATHER_CHESTPLATE/1/0
+      default-name: false
+      enchants: 
+       - PROTECTION_ENVIRONMENTAL 5
+       - DURABILITY 10
+       - THORNS 2
+      limit: -1
+    'Seven-League Boots':
+      '1': FEATHER/0 ENDER_PEARL/0 FEATHER/0
+      '2': FEATHER/0 DIAMOND_BOOTS/0 FEATHER/0
+      '3': FEATHER/0 WATER_BUCKET/0 FEATHER/0
+      craft: DIAMOND_BOOTS/1/0
+      default-name: false
+      enchants: 
+       - PROTECTION_FALL 3
+       - PROTECTION_ENVIRONMENTAL 3
+      limit: -1
+    'Iron Economy':
+      '1': IRON_ORE/0 IRON_ORE/0 IRON_ORE/0
+      '2': IRON_ORE/0 COAL/0 IRON_ORE/0
+      '3': IRON_ORE/0 IRON_ORE/0 IRON_ORE/0
+      craft: IRON_INGOT/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Gold Economy':
+      '1': GOLD_ORE/0 GOLD_ORE/0 GOLD_ORE/0
+      '2': GOLD_ORE/0 COAL/0 GOLD_ORE/0
+      '3': GOLD_ORE/0 GOLD_ORE/0 GOLD_ORE/0
+      craft: GOLD_INGOT/10/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Obsidian':
+      '1': AIR/0 AIR/0 AIR/0
+      '2': AIR/0 LAVA_BUCKET/0 AIR/0
+      '3': AIR/0 WATER_BUCKET/0 AIR/0
+      craft: OBSIDIAN/1/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Tarnhelm':
+      '1': DIAMOND/0 IRON_INGOT/0 DIAMOND/0
+      '2': DIAMOND/0 REDSTONE_BLOCK/0 DIAMOND/0
+      '3': AIR/0 AIR/0 AIR/0
+      craft: DIAMOND_HELMET/1/0
+      default-name: false
+      enchants: 
+       - PROTECTION_ENVIRONMENTAL 1
+       - PROTECTION_FIRE 1
+       - WATER_WORKER 3
+      limit: -1
+    'Philosophers Pickaxe':
+      '1': DIAMOND_BLOCK/0 IRON_BLOCK/0 DIAMOND_BLOCK/0
+      '2': LAPIS_BLOCK/0 STICK/0 LAPIS_BLOCK/0
+      '3': AIR/0 STICK/0 AIR/0
+      craft: IRON_PICKAXE/1/0
+      default-name: false
+      enchants: 
+       - LOOT_BONUS_BLOCKS 3
+      limit: -1
+    'Enlightening Pack':
+      '1': AIR/0 REDSTONE_BLOCK/0 AIR/0
+      '2': REDSTONE_BLOCK/0 BOTTLE/0 REDSTONE_BLOCK/0
+      '3': AIR/0 REDSTONE_BLOCK/0 AIR/0
+      craft: EXPERIENCE_BOTTLE/5/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Light Enchanting Table':
+      '1': AIR/0 BOOKSHELF/0 AIR/0
+      '2': OBSIDIAN/0 DIAMOND/0 OBSIDIAN/0
+      '3': OBSIDIAN/0 EXPERIENCE_BOTTLE/0 OBSIDIAN/0
+      craft: ENCHANTING_TABLE/1/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Book of Thoth':
+      '1': ENDER_EYE/0 AIR/0 AIR/0
+      '2': AIR/0 PAPER/0 PAPER/0
+      '3': AIR/0 PAPER/0 FIRE_CHARGE/0
+      craft: ENCHANTED_BOOK/1/0
+      default-name: true
+      enchants: 
+       - DAMAGE_ALL 3
+       - FIRE_ASPECT 2
+       - ARROW_DAMAGE 2
+       - ARROW_KNOCKBACK 2
+       - PROTECTION_ENVIRONMENTAL 3
+      limit: -1
+    'Reaper Scythe':
+      '1': AIR/0 PLAYER_HEAD/0 PLAYER_HEAD/0
+      '2': AIR/0 STICK/0 NETHER_STAR/0
+      '3': STICK/0 AIR/0 AIR/0
+      craft: IRON_HOE/1/0
+      default-name: false
+      enchants: 
+       - DAMAGE_ALL 5
+       - FIRE_ASPECT 5
+       - DURABILITY 10
+      limit: -1
+    'Anduril':
+      '1': FEATHER/0 IRON_BLOCK/0 FEATHER/0
+      '2': FEATHER/0 IRON_BLOCK/0 FEATHER/0
+      '3': FEATHER/0 BLAZE_ROD/0 FEATHER/0
+      craft: IRON_SWORD/1/0
+      default-name: false
+      enchants: 
+       - DAMAGE_ALL 5
+       - LOOT_BONUS_MOBS 3
+       - DURABILITY 10
+      limit: -1
+    'Arrow Economy':  
+      '1': FLINT/0 FLINT/0 FLINT/0
+      '2': STICK/0 STICK/0 STICK/0
+      '3': FEATHER/0 FEATHER/0 FEATHER/0
+      craft: ARROW/20/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Artemis Bow':
+      '1': AIR/0 DIAMOND/0 AIR/0
+      '2': AIR/0 BOW/0 AIR/0
+      '3': AIR/0 ENDER_EYE/0 AIR/0
+      craft: BOW/1/0
+      default-name: false
+      enchants: 
+       - ARROW_DAMAGE 3
+      limit: -1
+    'Divine Axe Rhitta':
+      '1': DIAMOND_BLOCK/0 TNT/0 FIRE_CHARGE/0
+      '2': DIAMOND_BLOCK/0 BLAZE_ROD/0 AIR/0
+      '3': AIR/0 BLAZE_ROD/0 AIR/0
+      craft: GOLDEN_AXE/1/0
+      default-name: false
+      enchants: 
+       - DAMAGE_ALL 5
+       - DAMAGE_UNDEAD 5
+       - DAMAGE_ARTHROPODS 5
+       - DURABILITY 10
+       - KNOCKBACK 3
+      limit: -1
+    'Essence of Yggdrasil':
+      '1': WHEAT_SEED/0 ENCHANTING_TABLE/0 WHEAT_SEED/0
+      '2': GLOWSTONE/0 BOTTLE/0 GLOWSTONE/0
+      '3': WHEAT_SEED/0 REDSTONE_BLOCK/0 WHEAT_SEED/0
+      craft: EXPERIENCE_BOTTLE/50/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Hide of Leviathan':
+      '1': LAPIS_BLOCK/0 WATER_BUCKET/0 LAPIS_BLOCK/0
+      '2': DIAMOND/0 DIAMOND_LEGGINGS/0 DIAMOND/0
+      '3': LILY_PAD/0 AIR/0 LILY_PAD/0
+      craft: DIAMOND_LEGGINGS/1/0
+      default-name: false
+      enchants: 
+       - PROTECTION_ENVIRONMENTAL 4
+       - WATER_WORKER 3
+       - DEPTH_STRIDER 3
+       - OXYGEN 5
+      limit: -1
+    'Kings Rod':
+      '1': AIR/0 FISHING_ROD/0 AIR/0
+      '2': LILY_PAD/0 COMPASS/0 LILY_PAD/0
+      '3': AIR/0 WATER_BUCKET/0 AIR/0
+      craft: FISHING_ROD/1/0
+      default-name: false
+      enchants: []
+      limit: -1
+    'Voidbox':
+      '1': GLASS/0 GLASS/0 GLASS/0
+      '2': GLASS/0 PLAYER_HEAD/0 GLASS/0
+      '3': GLASS/0 GLASS/0 GLASS/0
+      craft: ENDER_CHEST/2/0
+      default-name: false
+      enchants: []
+      limit: -1
+    'Daddy':
+      '1': GLASS/0 NETHER_STAR/0 GLASS/0
+      '2': GLASS/0 DIAMOND_PICKAXE/0 GLASS/0
+      '3': GLASS/0 GLASS/0 GLASS/0
+      craft: DIAMOND_PICKAXE/1/0
+      default-name: false
+      enchants: 
+       - DURABILITY 10
+       - DIG_SPEED 7
+       - LOOT_BONUS_BLOCKS 3
+      limit: -1
+    'Nether Artifact':
+      '1': BLAZE_ROD/0 GLASS/0 BLAZE_ROD/0
+      '2': GLASS/0 ENCHANTED_GOLDEN_APPLE/0 GLASS/0
+      '3': BLAZE_ROD/0 GLASS/0 BLAZE_ROD/0
+      craft: NETHER_STAR/1/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Apple Artifact':
+      '1': GOLD_BLOCK/0 DIAMOND/0 GOLD_BLOCK/0
+      '2': DIAMOND/0 APPLE/0 DIAMOND/0
+      '3': GOLD_BLOCK/0 DIAMOND/0 GOLD_BLOCK/0
+      craft: ENCHANTED_GOLDEN_APPLE/1/0
+      default-name: true
+      enchants: []
+      limit: -1
+    'Apple Economy':
+      '1': AIR/0 AIR/0 AIR/0
+      '2': AIR/0 APPLE/0 AIR/0
+      '3': AIR/0 BONE_MEAL/0 AIR/0
+      craft: APPLE/2/0
+      default-name: true
+      enchants: []
+      limit: -1
+    # '':
+    #   '1': AIR/0 AIR/0 AIR/0
+    #   '2': AIR/0 AIR/0 AIR/0
+    #   '3': AIR/0 AIR/0 AIR/0
+    #   craft: AIR/1/0
+    #   default-name: false
+    #   enchants: []
+    #   limit: -1
+
+
+
+  #Max building height (Set to -1 to disable).
+  max-building-height: -1
+
+  #Set it to true to prevent players from entering the nether through a portal
+  ban-nether: false
+
+  # Set it to true to enable the end.
+  # Only set this to true when you are really using it since more worlds loaded means worse performance.
+  enable-the-end: false
+
+  #A list of items that you don't want players to be able to craft
+  # To view the correct item item data you can use '/iteminfo' in game (Permission: 'uhc-core.commands.iteminfo')
+  # Syntax ITEM_NAME/DAMAGE_VALUE
+  # To remove all items change to "ban-items-crafts: []"
+  ban-items-crafts:
+    - GOLDEN_APPLE/1
+
+  #Set it to true to prevent players from making level II potions with glowstone
+  ban-level-2-potions: false
+
+  #Set it to false to get the normal day light cycle
+  always-day: true
+
+
+  # Set it to true to allow droping a player head when a player dies
+  # Eating the head regenerates your team for 5 seconds
+  add-regen-head-drop-on-player-death: true
+  # Set this to true to double the health given to your team.
+  double-regen-head: false
+
+
+  # When golden heads are enabled on players death a skull will drop.
+  # This skull can be placed in a crafting table with 8 gold around it to craft a "Golden Apple".
+  # Golden heads heal 4 hearths instead of 2 for normal golden apples.
+  enable-golden-heads: true
+  # Set to true to place skull on a fence pole instead of dropping it on the ground.
+  place-head-on-fence: false
+
+
+  # Set it to false to disable the sound on player death
+  # Sound names reference list : https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  sound-on-player-death: WITHER_SPAWN
+
+# This section references optional features to allow to run in fast uhc mode ( = uhc run)
+fast-mode:
+
+  # Set to true if you want all playing players to be healed at a set time.
+  final-heal:
+    enable: false
+    delay: 1200
+
+  underground-nether:
+    # Set it to true to allow pasting a nether schematic file in the overworld.
+    # The file should be named nether.schematic and be located in the plugins/UhcCore folder
+    # If enabled, it will be pasted at random places in the world
+    enable: false
+
+    # Choose the min number of times the schematic will be pasted at random places
+    min-ocurrences: 5
+
+    # Choose the max number of times the schematic will be pasted at random places
+    max-ocurrences: 10
+
+    # Choose the height at which the schematic should be pasted
+    paste-nether-at-y: 20
+
+  # Configure customizable block loots
+  # The name of the sub-category should be an existing block material
+  # To view the correct item item data you can use '/iteminfo' in game (Permission: 'uhc-core.commands.iteminfo')
+  # You can set 'loot' and 'add-xp' to drop an item or some xp
+  # The item syntax is MATERIAL/AMOUNT/DAMAGE
+  # If you do not want to have special loots, just leave the config node empty like that block-loot: {}
+  block-loot:
+    # Set to true to enable this feature
+    enable: false
+
+    loots:
+      # It will drop 4 torches when breaking a coal ore block
+      COAL_ORE:
+        loot: TORCH/4/0
+
+      # It will drop 2 iron ingots when breaking a iron ore block
+      # It will also drop 3 xp
+      IRON_ORE:
+        loot: IRON_INGOT/2/0
+        add-xp: 3
+
+      # It will drop 2 gold ingots when breaking a gold ore block
+      # It will also drop 3 xp
+      GOLD_ORE:
+        loot: GOLD_INGOT/2/0
+        add-xp: 3
+
+      # It will drop 2 diamonds when breaking a diamond ore block
+      # It will also drop 5 xp
+      DIAMOND_ORE:
+        loot: DIAMOND/2/0
+        add-xp: 5
+
+      # It will drop 4 arrows when breaking a gravel block
+      GRAVEL:
+        loot: ARROW/4/0
+
+  # Configure customizable mob loots
+  # The name of the sub-category should be an existing entity type
+  # See reference list here : https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+  # You can set 'loot' and 'add-xp' to drop an item or some xp
+  # The item syntax is MATERIAL/AMOUNT/DAMAGE
+  # If you do not want to have special loots, just leave the config node empty like that mob-loot: {}
+  mob-loot:
+    # Set to true to enable this feature
+    enable: false
+
+    loots:
+      #It will drop 1 string and 2 xp when killing sheep.
+      SHEEP:
+        loot: STRING/1/0
+        add-xp: 2
+
+
+  # Generate extra sugar cane
+  generate-sugar-cane:
+    # Set to true to enable this feature.
+    enable: true
+    # The percentage of spannable blocks populated with sugar cane. (100 means 100% of the grass/sand blocks along water are filled with sugar cane.)
+    percentage: 10
+
+
+  apple-drops:
+    # What percentage of leaves should drop apples? (The default vanilla percentage is 0.5%)
+    percentage: 0.5
+    # Set to true if you want all type of trees to drop apples. (By default only oak and dark oak trees drop apples)
+    all-trees: false
+    # Set to true if you want sheared leaves to drop apples.
+    allow-shears: false
+
+  # Having this enabled means ocean biomes will be replaced with planes and forrest.  (ONLY FOR 1.8!)
+  replace-ocean-biomes: false
+
+  # Generates more ore in the map
+  generate-vein:
+
+    # Set it to true to enable this feature.
+    # If requires pre-generate-world to be enabled in order to generate more ores
+    enable: false
+
+    # Configure the blocks to be generated
+    # The names should be existing material names
+    # To view the correct item item data you can use '/iteminfo' in game (Permission: 'uhc-core.commands.iteminfo')
+    veins:
+
+      COAL_ORE:
+        # Minimum generated veins per chunk
+        min-veins-per-chunk: 2
+
+        # Maximum generated veins per chunk
+        max-veins-per-chunk: 5
+
+        # Minimum generated block per vein
+        min-blocks-per-vein: 5
+
+        # Maximum generated block per vein
+        max-blocks-per-vein: 10
+
+        # Minimum y height where the vein will be generated
+        min-y: 0
+
+        # Maximum y height where the vein will be generated
+        max-y: 60
+
+      # Same config with other ores ...
+      IRON_ORE:
+        min-veins-per-chunk: 2
+        max-veins-per-chunk: 10
+        min-blocks-per-vein: 4
+        max-blocks-per-vein: 8
+        min-y: 0
+        max-y: 60
+      GOLD_ORE:
+        min-veins-per-chunk: 2
+        max-veins-per-chunk: 5
+        min-blocks-per-vein: 2
+        max-blocks-per-vein: 8
+        min-y: 0
+        max-y: 60
+      DIAMOND_ORE:
+        min-veins-per-chunk: 2
+        max-veins-per-chunk: 4
+        min-blocks-per-vein: 2
+        max-blocks-per-vein: 5
+        min-y: 0
+        max-y: 60
+      LAPIS_ORE:
+        min-veins-per-chunk: 2
+        max-veins-per-chunk: 4
+        min-blocks-per-vein: 2
+        max-blocks-per-vein: 4
+        min-y: 0
+        max-y: 60
+      REDSTONE_ORE:
+        min-veins-per-chunk: 2
+        max-veins-per-chunk: 5
+        min-blocks-per-vein: 4
+        max-blocks-per-vein: 6
+        min-y: 0
+        max-y: 60
+      EMERALD_ORE:
+        min-veins-per-chunk: 2
+        max-veins-per-chunk: 2
+        min-blocks-per-vein: 1
+        max-blocks-per-vein: 3
+        min-y: 0
+        max-y: 60
+
+
+#Set it to true to enable kit permissions support.
+#You then have to give players permissions like uhc-core.kit.tools
+enable-kits-permissions: false
+
+#Edit kits here, to remove all kits write only an empty node: "kits: {}"
+kits:
+  #Choose a keyword for the kit (not displayed in game)
+  tools:
+    symbol:
+      #Choose what item will represent the kit
+      item: STONE_PICKAXE
+      #Choose the name of the item
+      name: Kit Tools
+    #Write a list of item following the syntax "number item"
+    # To view the correct item item data you can use '/iteminfo' in game (Permission: 'uhc-core.commands.iteminfo')
+    items:
+      - 1 STONE_SWORD
+      - 1 STONE_PICKAXE
+      - 1 STONE_AXE
+
+  #Write other kits
+  ench:
+    symbol:
+      item: ENCHANTED_BOOK
+      name: Enchanting
+    items:
+      - 15 PAPER
+      - 5 LEATHER
+
+#Options to configure the playing compass
+playing-compass:
+  #If set to false the playing compass will be removed from the game.
+  enable: true
+  #Compass mode:
+  # 1 = The compass will point towards teammates when right-clicking it
+  # 2 = The compass will point towards enemy's when right-clicking it
+  # 3 = The compass will point towards all players when right-clicking it
+  mode: 1
+
+# Set to true if you want to enable hearts on tab.
+hearts-on-tab: true
+
+# Set to true if you want to enable hearts below player names.
+hearts-below-name: false
+
+#Set it to true to give the spectating players access to the '/teleport <player>' command to teleport to playing players
+spectating-teleport: true
+
+#Options to pre-generate the world
+pre-generate-world:
+  #If set to true, the plugin will generate every chunks inside the world border
+  enable: false
+
+  #Delay in ticks to suspend the generation to avoid server crashing
+  rest-every-ticks: 20
+
+  #Duration of the rest in ticks
+  rest-duration: 20
+
+  #Maximum number of chunks loaded each tick
+  chunks-per-tick: 10
+
+#Setting up the world border
+border:
+  #Set it to true to make the border reduce slowly
+  moving: false
+
+  #Starting size of the border (500 means +500x, -500x, +500z, -500z)
+  start-size: 500
+
+  #End size of the border (200means +200x, -200x, +200z, -200z)
+  end-size: 200
+
+  #If moving is set to true, the time in seconds for the border to shrink to end-size
+  time-to-shrink: 3600
+
+  #If moving is set to true, the time in seconds for the border before it starts moving
+  time-before-shrink: 0
+
+
+#Setting up the time limit
+time-limit:
+  #Set it to false to make an endless game until one team wins
+  enable: true
+
+  #The time in seconds for the time limit
+  limit: 3600
+
+  #Set it to true if you want a deathmatch after the time-limit (time-limit must be true)
+  #For this to work, you must have WorldEdit installed and your arena.schematic file inside plugins/UhcCore
+  end-with-deathmatch-after-time-limit: false
+
+  #Set it to true if you want players in deathmatch to be in adventure mode. (false = survival mode)
+  deathmatch-adventure-mode: true
+
+  # Choose a rare block type that will create team teleport spots in the deathmatch arena
+  # To view the correct item item data you can use '/iteminfo' in game (Permission: 'uhc-core.commands.iteminfo')
+  deathmatch-teleport-spots-block: BEDROCK
+
+  # The arena.schematic is pasted at x=10000 z=10000, you can choose here the y coordinate
+  paste-arena-at-y: 100
+
+worlds:
+  # Having this set to true means the name of your uhc world don't change. This is not suggested since it may couse some worlds to not load correctly.
+  permanent-world-names: false
+
+#Write custom seeds to be used when creating a new map
+world-seeds:
+  #Set it to true to pick a random seed from this list
+  pick-random-seed-from-list: false
+
+  #Write here custom seeds
+  list:
+    - 8708477303049171819
+    - 4718448332187272495
+
+#Write existing world name in your server folder to copy and play on a map you have created
+world-list:
+  #Set it to true to use that feature (you must set pick random seed to false also)
+  pick-random-world-from-list: false
+  #A list of your existing world folders
+  list:
+    - your_world
+    - your_second_world
+
+#Enable bungee-coord support to send players back to the server of your choice when the game ends
+bungee-support:
+  #Set it to true to send players back to a server at the end
+  enable: false
+  #Set it to true if you want players to get a return to lobby item on their hotbar.
+  use-lobby-item: true
+  #The name of the server (same as in your bungee config)
+  send-players-to-server-after-end: lobby
+  #Time (in seconds) before sending the player to the hub (If spectating after death is disabled and they don't have the permission 'uhc-core.spectate.override').
+  time-before-send-after-death: 0
+  #Time (in seconds) before sending all the players to the hub after the game has ended
+  time-before-send-after-end: 0
+
+#Reward your players for taking achievements (kills, win, playing time).
+#Require Vault and an Economy plugin compatible with Vault (I recommend CraftConomy)
+custom-events:
+  #Reward a player a price in your economy currency every time he is still alive after the interval (in seconds)
+  time:
+    enable: false
+    reward: 100
+    interval: 600
+  #Reward a player a price in your economy currency every time he kills an enemy
+  kill:
+    enable: false
+    reward: 500
+  #Reward a price in your economy currency to the winners of the game
+  win:
+    enable: false
+    reward: 1000
+
+# When set to true, the plugin won't delete the last world, it will just load it. It will also ignore the map pre-generator.
+# This is to allow fast-configuration, to avoid creating new worlds when you only want to configure some other features.
+debug: false
+# When set to true, the game won't end when only one player is left. This can be used to play alone in order to test games.
+one-player-mode: false
